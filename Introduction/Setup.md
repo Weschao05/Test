@@ -1,45 +1,62 @@
-#Installing Miniconda3
-1. Login in to Kepler and make sure you are in home directory
-2. Install Miniconda3 and you should be in (base) at the end. Type:
+# Installing Miniconda3 and Setting Up RNA-seq Environment
+
+## 1. Install Miniconda3
+
+1. Log in to Kepler and ensure you are in your home directory.
+
+2. Download and install Miniconda3:
+
 ```bash
 wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh
 bash Miniconda3-py39_4.12.0-Linux-x86_64.sh
 
-source .bashrc
-
-conda ––version
+#Reload Shell Configuration and verify installation
+source ~/.bashrc
+conda --version
 ```
-3. Type the following
+
+## 2. Configure Conda Channels
+1. Check current channels:
 ```bash
 conda config --show channels
 ```
-You should see “default”. Please installed bioconda and conda forge and then check afterward if installation is complete. Type:
+You should see defaults.
+
+2. Add required bioinformatics channels:
 ```bash
-conda config --add channels bioconda
 conda config --add channels conda-forge
+conda config --add channels bioconda
 ```
-4. Set up the Conda Environments. Type:
+
+## 3. Create Conda Environments
+1. Set up separate environments for each step of the workflow:
 ```bash
-#Trimming
+#Trimming and QC
 conda create -n trimming -c bioconda -c conda-forge trim-galore fastqc
+
 #Alignment
 conda create -n alignment -c bioconda -c conda-forge hisat2 samtools
-#Htseq
+
+#Read Counting
 conda create -n counting -c bioconda -c conda-forge htseq
 ```
-5. Activate conda environments
+2. Activate Conda Environments. Type:
 ```bash
-conda activate <your_environment>
+conda activate <environment_name>
 ```
-6. Optionally, you can set up aliases make faster access to your environment using your .bash_profile
+(Optional)
+For faster environment switching, you can add aliases to your .bashrc or .bash_profile:
 
-#Downloading raw_fastq and ref_genome
-1. Create the following directories: raw_reads, trimmed_reads, ref_genome, fastqc, hisat2, alignments, counts, scripts, logs
-2. Go inside /raw_reads and type:
+## 4. Downloading Raw FASTQ Files and Reference Genome
+1. Create Project Directory Structure
 ```bash
-cp <Full Path for raw reads>/*.fastq .
+mkdir -p raw_reads trimmed_reads ref_genome fastqc hisat2 alignments counts scripts logs
 ```
-3. Similarly, go to /ref_genome and type:
+2. Copy Raw FASTQ Files
 ```bash
-cp MFull Path for ref genome>/*.ht2
+cp /full/path/to/raw_reads/*.fastq .
+```
+3. Copy Refernece Genome
+```bash
+cp /full/path/to/ref_genome/*.ht2 .
 ```
