@@ -41,5 +41,5 @@ cp <Full Path for raw reads>/*.fastq .
 ```
 3. Similarly, go to /ref_genome and type:
 ```bash
-cp MFull Path for ref genome>/*.ht2
+cp <Full Path for ref genome>/*.ht2
 ```
