@@ -20,7 +20,7 @@ conda --version
 ```bash
 conda config --show channels
 ```
-You should see defaults.
+You should see ```defaults```.
 
 2. Add required bioinformatics channels:
 ```bash
@@ -50,7 +50,7 @@ For faster environment switching, you can add aliases to your .bashrc or .bash_p
 ## 4. Downloading Raw FASTQ Files and Reference Genome
 1. Create Project Directory Structure
 ```bash
-mkdir -p raw_reads trimmed_reads ref_genome fastqc hisat2 alignments counts scripts logs
+mkdir raw_reads trimmed_reads ref_genome fastqc hisat2 alignments counts scripts logs
 ```
 2. Copy Raw FASTQ Files
 ```bash
